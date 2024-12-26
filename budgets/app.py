@@ -3,7 +3,7 @@ from config import app, get_db_connection
 from models import initialize_database
 from datetime import datetime
 
-# Initialize the database
+
 initialize_database()
 
 @app.route('/')
@@ -46,13 +46,12 @@ def expenses():
         connection = get_db_connection()
         cursor = connection.cursor(dictionary=True)
 
-        # Update budget current amount
+        
         cursor.execute("SELECT * FROM Budgets WHERE budget_id = %s", (budget_id,))
         budget = cursor.fetchone()
         new_amount = budget['current_amount'] + amount
         cursor.execute("UPDATE Budgets SET current_amount = %s WHERE budget_id = %s", (new_amount, budget_id))
 
-        # Insert alert if threshold is exceeded
         if new_amount > budget['threshold_amount']:
             alert_message = f"Alert: Your expenses for the {budget['category']} category have exceeded the threshold of ${budget['threshold_amount']}"
             cursor.execute(
@@ -60,7 +59,7 @@ def expenses():
                 (budget_id, "Threshold Exceeded", alert_message, datetime.now())
             )
 
-        # Insert the expense
+
         cursor.execute(
             "INSERT INTO Expenses (budget_id, amount, description, date) VALUES (%s, %s, %s, %s)",
             (budget_id, amount, description, date)
@@ -92,7 +91,6 @@ def report():
 
     connection.close()
 
-    # Process data for report
     budget_expenses = {}
     for expense in expenses:
         if expense['budget_id'] not in budget_expenses:
