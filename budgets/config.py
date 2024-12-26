@@ -3,7 +3,6 @@ import mysql.connector
 
 app = Flask(__name__)
 
-# Database Configuration
 DB_HOST = "localhost"
 DB_USER = "root"
 DB_PASSWORD = "Krishna1919@"
