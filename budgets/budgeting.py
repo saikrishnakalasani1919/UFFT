@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 from flask import Flask, render_template, request, redirect, flash
 import mysql.connector
 from datetime import datetime
@@ -168,7 +167,6 @@ def edit_budget(budget_id):
 # Run the app
 if __name__ == '__main__':
     app.run(debug=True)
-=======
 from flask import Flask, render_template, request, redirect, flash
 import mysql.connector
 from datetime import datetime
@@ -338,4 +336,3 @@ def edit_budget(budget_id):
 # Run the app
 if __name__ == '__main__':
     app.run(debug=True)
->>>>>>> 7f3e84380004f890a1d60e972b7cf980a7c15224
