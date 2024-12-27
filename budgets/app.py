@@ -46,13 +46,16 @@ def expenses():
         connection = get_db_connection()
         cursor = connection.cursor(dictionary=True)
 
-        # Update budget current amount
+        
         cursor.execute("SELECT * FROM Budgets WHERE budget_id = %s", (budget_id,))
         budget = cursor.fetchone()
         new_amount = budget['current_amount'] + amount
         cursor.execute("UPDATE Budgets SET current_amount = %s WHERE budget_id = %s", (new_amount, budget_id))
 
+<<<<<<< HEAD
         
+=======
+>>>>>>> 7f3e84380004f890a1d60e972b7cf980a7c15224
         if new_amount > budget['threshold_amount']:
             alert_message = f"Alert: Your expenses for the {budget['category']} category have exceeded the threshold of ${budget['threshold_amount']}"
             cursor.execute(
@@ -60,7 +63,11 @@ def expenses():
                 (budget_id, "Threshold Exceeded", alert_message, datetime.now())
             )
 
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> 7f3e84380004f890a1d60e972b7cf980a7c15224
         cursor.execute(
             "INSERT INTO Expenses (budget_id, amount, description, date) VALUES (%s, %s, %s, %s)",
             (budget_id, amount, description, date)
@@ -92,7 +99,10 @@ def report():
 
     connection.close()
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 7f3e84380004f890a1d60e972b7cf980a7c15224
     budget_expenses = {}
     for expense in expenses:
         if expense['budget_id'] not in budget_expenses:

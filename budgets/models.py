@@ -5,7 +5,11 @@ def initialize_database():
     connection = get_db_connection()
     cursor = connection.cursor()
 
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 7f3e84380004f890a1d60e972b7cf980a7c15224
     cursor.execute("""
         CREATE TABLE IF NOT EXISTS Users (
             user_id INT AUTO_INCREMENT PRIMARY KEY,
